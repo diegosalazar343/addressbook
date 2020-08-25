@@ -38,10 +38,13 @@ AddressBook.prototype.deleteContact = function (id) {
 }
 
 // Business Logic for Contacts
-function Contact(firstName, lastName, phoneNumber) {
+function Contact(firstName, lastName, phoneNumber, emailAddress, homeAddress, otherAddress) {
   this.firstName = firstName,
     this.lastName = lastName,
-    this.phoneNumber = phoneNumber
+    this.phoneNumber = phoneNumber,
+    this.emailAddress = emailAddress,
+    this.homeAddress = homeAddress,
+    this.otherAddress = otherAddress
 }
 
 Contact.prototype.fullName = function () {
@@ -66,6 +69,9 @@ function showContact(contactId) {
   $(".first-name").html(contact.firstName);
   $(".last-name").html(contact.lastName);
   $(".phone-number").html(contact.phoneNumber);
+  $(".email-address").html(contact.emailAddress);
+  $(".home-address").html(contact.homeAddress);
+  $(".other-address").html(contact.otherAddress);
   let buttons = $("#buttons");
   buttons.empty();
   buttons.append("<button class='deleteButton' id=" + contact.id + ">Delete</button>");
@@ -76,6 +82,7 @@ function attachContactListeners() {
     showContact(this.id);
   });
   $("#buttons").on("click", ".deleteButton", function () {
+    $("new-other-address").remove( ":contains('Other Address:')"); // --just added not working
     addressBook.deleteContact(this.id);
     $("#show-contact").hide();
     displayContactDetails(addressBook);
@@ -89,10 +96,16 @@ $(document).ready(function () {
     const inputtedFirstName = $("input#new-first-name").val();
     const inputtedLastName = $("input#new-last-name").val();
     const inputtedPhoneNumber = $("input#new-phone-number").val();
+    const inputtedEmailAddress = $("input#new-email-address").val();
+    const inputtedHomeAddress = $("input#new-home-address").val();
+    const inputtedOtherAddress = $("input#new-other-address").val();
     $("input#new-first-name").val("");
     $("input#new-last-name").val("");
     $("input#new-phone-number").val("");
-    let newContact = new Contact(inputtedFirstName, inputtedLastName, inputtedPhoneNumber);
+    $("input#new-email-address").val("");
+    $("input#new-home-address").val("");
+    $("input#new-other-address").val("");
+    let newContact = new Contact(inputtedFirstName, inputtedLastName, inputtedPhoneNumber, inputtedEmailAddress, inputtedHomeAddress, inputtedOtherAddress);
     addressBook.addContact(newContact);
     displayContactDetails(addressBook);
   })
