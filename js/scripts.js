@@ -83,6 +83,9 @@ function attachContactListeners() {
   });
   $("#buttons").on("click", ".deleteButton", function () {
     addressBook.deleteContact(this.id);
+    $("button").click(function() {
+      $("delete").remove(":contains('Other Address:')");
+    })
     $("#show-contact").hide();
     displayContactDetails(addressBook);
   });
