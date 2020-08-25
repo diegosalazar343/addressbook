@@ -82,7 +82,6 @@ function attachContactListeners() {
     showContact(this.id);
   });
   $("#buttons").on("click", ".deleteButton", function () {
-    $("new-other-address").remove( ":contains('Other Address:')"); // --just added not working
     addressBook.deleteContact(this.id);
     $("#show-contact").hide();
     displayContactDetails(addressBook);
