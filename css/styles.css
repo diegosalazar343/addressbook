@@ -1,0 +1,9 @@
+.container {
+  background: rgb(172, 32, 121);
+  text-align:center;
+  color: white;
+}
+
+body {
+  background: url(/image/trianglify-lowres.png);
+}
