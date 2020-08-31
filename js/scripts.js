@@ -84,7 +84,7 @@ function attachContactListeners() {
   $("#buttons").on("click", ".deleteButton", function () {
     addressBook.deleteContact(this.id);
     $("button").click(function() {
-      $("delete").remove(":contains('Other Address:')");
+      $("p").remove("Delete Other Address"); // ---button for other address
     })
     $("#show-contact").hide();
     displayContactDetails(addressBook);
